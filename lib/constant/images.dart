@@ -11,3 +11,6 @@ const playlistImage_1 = 'assets/images/Playlist_2.svg';
 const songImage = 'assets/images/Song_1.svg';
 const songImage_1 = 'assets/images/Song_2.svg';
 const welcomeBackgroundImage = 'assets/images/WelcomeBackground.svg';
+const welcomeBackgroundImage_1 = 'assets/images/WelcomeBackground.png';
+const brandingImage = 'assets/images/branding.png';
+const splashImage = 'assets/images/splash.png';
