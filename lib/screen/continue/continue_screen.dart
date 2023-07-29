@@ -4,8 +4,19 @@ import 'package:spotify_clone/constant/colors.dart';
 import 'package:spotify_clone/constant/images.dart';
 import 'package:spotify_clone/constant/icon.dart';
 import 'package:spotify_clone/constant/typography.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 bool isDarkMode = false;
+
+void initIsDarkMode() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  isDarkMode = prefs.getBool('isDarkMode') ?? false;
+}
+
+void setIsDarkMode(bool value) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool('isDarkMode', value);
+}
 
 class Continue extends StatefulWidget {
   const Continue({super.key});
@@ -18,6 +29,7 @@ class _ContinueState extends State<Continue> {
   @override
   void initState() {
     super.initState();
+    initIsDarkMode();
   }
 
   @override
@@ -98,66 +110,106 @@ class _ContinueState extends State<Continue> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  foregroundDecoration: BoxDecoration(
-                                    color: isDarkMode
-                                        ? mainColor.withOpacity(0.6)
-                                        : whiteColor.withOpacity(0.1),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: MaterialButton(
-                                      color: Colors.transparent,
-                                      height:
-                                          MediaQuery.of(context).size.height *
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      foregroundDecoration: BoxDecoration(
+                                        color: isDarkMode
+                                            ? mainColor.withOpacity(0.6)
+                                            : whiteColor.withOpacity(0.1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: MaterialButton(
+                                          color: Colors.transparent,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
                                               10 /
                                               100,
-                                      minWidth:
-                                          MediaQuery.of(context).size.width *
+                                          minWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
                                               10 /
                                               100,
-                                      shape: const CircleBorder(),
-                                      onPressed: () {
-                                        setState(() {
-                                          isDarkMode = !isDarkMode;
-                                          print("DarkMode: ${isDarkMode}");
-                                        });
-                                      },
-                                      child: SvgPicture.asset(moonIcon)),
+                                          shape: const CircleBorder(),
+                                          onPressed: () {
+                                            setState(() {
+                                              isDarkMode = !isDarkMode;
+                                              setIsDarkMode(isDarkMode);
+                                            });
+                                          },
+                                          child: SvgPicture.asset(moonIcon)),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text("Dark Mode",
+                                        style: captionRegularTextStyle),
+                                  ],
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  foregroundDecoration: BoxDecoration(
-                                    color: isDarkMode
-                                        ? whiteColor.withOpacity(0.1)
-                                        : mainColor.withOpacity(0.6),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: MaterialButton(
-                                      color: Colors.transparent,
-                                      height:
-                                          MediaQuery.of(context).size.height *
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      foregroundDecoration: BoxDecoration(
+                                        color: isDarkMode
+                                            ? whiteColor.withOpacity(0.1)
+                                            : mainColor.withOpacity(0.6),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: MaterialButton(
+                                          color: Colors.transparent,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
                                               10 /
                                               100,
-                                      minWidth:
-                                          MediaQuery.of(context).size.width *
+                                          minWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
                                               10 /
                                               100,
-                                      shape: const CircleBorder(),
-                                      onPressed: () {
-                                        setState(() {
-                                          isDarkMode = !isDarkMode;
-                                          print("LightMode: ${isDarkMode}");
-                                        });
-                                      },
-                                      child: SvgPicture.asset(sunIcon)),
+                                          shape: const CircleBorder(),
+                                          onPressed: () {
+                                            setState(() {
+                                              isDarkMode = !isDarkMode;
+                                              setIsDarkMode(isDarkMode);
+                                            });
+                                          },
+                                          child: SvgPicture.asset(sunIcon)),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text("Light Mode",
+                                        style: captionRegularTextStyle),
+                                  ],
                                 ),
                               ],
                             ),
-                          )
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  10 /
+                                  100),
                         ],
                       ))
                 ]),
+                /*SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),*/
+                MaterialButton(
+                  height: MediaQuery.of(context).size.height * 10 / 100,
+                  minWidth: MediaQuery.of(context).size.width * 90 / 100,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/continue');
+                  },
+                  color: mainColor,
+                  child: Text(
+                    "Continue",
+                    style: titleBoldBlackTextStyle,
+                  ),
+                ),
               ])),
     );
   }
