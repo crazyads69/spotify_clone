@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spotify_clone/constant/colors.dart';
 import 'package:spotify_clone/constant/images.dart';
 import 'package:spotify_clone/constant/typography.dart';
-import 'package:spotify_clone/screen/continue/continue_screen.dart';
 
 class GettingStarted extends StatefulWidget {
   const GettingStarted({super.key});
@@ -86,11 +85,11 @@ class _GettingStartedState extends State<GettingStarted> {
               onPressed: () {
                 Navigator.pushNamed(context, '/continue');
               },
+              color: mainColor,
               child: Text(
                 "Get Started",
                 style: titleBoldBlackTextStyle,
               ),
-              color: mainColor,
             ),
           ],
         ),
