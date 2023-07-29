@@ -23,6 +23,12 @@ class MyApp extends StatelessWidget {
       title: 'Spotify',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
         useMaterial3: true,
