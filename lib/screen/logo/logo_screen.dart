@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:spotify_clone/constant/colors.dart';
 import 'package:spotify_clone/constant/images.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});
@@ -18,14 +18,14 @@ class _LogoState extends State<LogoScreen> {
     initSplash();
     Timer(const Duration(seconds: 2), () {
       Navigator.pushNamedAndRemoveUntil(
-        (context),
+        context,
         '/get-started',
         (route) => false,
       );
     });
   }
 
-  void initSplash() async {
+  Future initSplash() async {
     await Future.delayed(const Duration(seconds: 1));
     FlutterNativeSplash.remove();
   }

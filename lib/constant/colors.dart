@@ -17,13 +17,11 @@ const blackColor = Color(0xFF0F0E0E);
 // Gradient Color
 
 const gradientColor = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [
-      blackColor,
-      greyColor,
-    ],
-    stops: [
-      0.0,
-      1.0
-    ]);
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [
+    blackColor,
+    greyColor,
+  ],
+  stops: [0.0, 1.0],
+);
