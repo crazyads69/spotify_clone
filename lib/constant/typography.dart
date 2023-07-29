@@ -10,6 +10,22 @@ TextStyle titleBoldTextStyle = const TextStyle(
   color: Colors.white,
 );
 
+TextStyle titleBoldGreenTextStyle = const TextStyle(
+  //Max size: 32
+  fontSize: 24,
+  fontFamily: 'Montserrat',
+  fontWeight: FontWeight.w700,
+  color: Colors.green,
+);
+
+TextStyle titleBoldBlackTextStyle = const TextStyle(
+  //Max size: 32
+  fontSize: 24,
+  fontFamily: 'Montserrat',
+  fontWeight: FontWeight.w700,
+  color: Colors.black,
+);
+
 TextStyle titleSemiBoldLTextStyle = const TextStyle(
   //Max size: 28
   fontSize: 20,

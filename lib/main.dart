@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:spotify_clone/constant/colors.dart';
 import 'package:spotify_clone/constant/images.dart';
 import 'package:spotify_clone/screen/get_started/get_started_screen.dart';
+import 'package:spotify_clone/screen/continue/continue_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.transparent,
       title: 'Spotify',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/get-started': (context) => const GettingStarted(),
+        '/continue': (context) => const Continue(),
       },
     );
   }
@@ -45,20 +48,17 @@ class _LogoState extends State<LogoScreen> {
   @override
   void initState() {
     super.initState();
-    initialization();
-
-    setState(() {
-      Timer(const Duration(seconds: 3), () {
-        Navigator.pushNamedAndRemoveUntil(
-          (context),
-          '/get-started',
-          (route) => false,
-        );
-      });
+    initSplash();
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushNamedAndRemoveUntil(
+        (context),
+        '/get-started',
+        (route) => false,
+      );
     });
   }
 
-  void initialization() async {
+  void initSplash() async {
     await Future.delayed(const Duration(seconds: 1));
     FlutterNativeSplash.remove();
   }
