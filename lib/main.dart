@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:spotify_clone/constant/colors.dart';
-import 'package:spotify_clone/constant/images.dart';
 import 'package:spotify_clone/screen/get_started/get_started_screen.dart';
 import 'package:spotify_clone/screen/continue/continue_screen.dart';
+import 'package:spotify_clone/screen/logo/logo_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -39,47 +37,6 @@ class MyApp extends StatelessWidget {
         '/get-started': (context) => const GettingStarted(),
         '/continue': (context) => const Continue(),
       },
-    );
-  }
-}
-
-class LogoScreen extends StatefulWidget {
-  const LogoScreen({super.key});
-
-  @override
-  State<LogoScreen> createState() => _LogoState();
-}
-
-class _LogoState extends State<LogoScreen> {
-  @override
-  void initState() {
-    super.initState();
-    initSplash();
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushNamedAndRemoveUntil(
-        (context),
-        '/get-started',
-        (route) => false,
-      );
-    });
-  }
-
-  void initSplash() async {
-    await Future.delayed(const Duration(seconds: 1));
-    FlutterNativeSplash.remove();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: blackColor,
-      body: Center(
-        child: Image.asset(
-          splashImage,
-          width: MediaQuery.of(context).size.width * 72 / 100,
-          height: MediaQuery.of(context).size.height * 10 / 100,
-        ),
-      ),
     );
   }
 }
